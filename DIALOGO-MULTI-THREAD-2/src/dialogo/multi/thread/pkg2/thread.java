@@ -24,8 +24,7 @@ public class thread implements Runnable {
         T.start();
         this.nome = nome;
         this.contatore = contatore;
-        dialogo1();
-        dialogo2();
+        dialogo();  //popolo l'array
     }
 
     public char getNome() {
@@ -35,24 +34,25 @@ public class thread implements Runnable {
     public int getContatore() {
         return contatore;
     }
-    
-    public void stampaPari(){
+
+    public void stampaPari() {
         for (int i = 0; i < 20; i++) {
-            if((i%2) == 0){
-                System.out.println(discorso[i]);
-            }
-        }
-    }
-    
-    public void stampaDispari(){
-        for (int i = 0; i < 20; i++) {
-            if((i%2) != 0){
+            if ((i % 2) == 0) {
                 System.out.println(discorso[i]);
             }
         }
     }
 
-    public void dialogo1() throws InterruptedException {
+    public void stampaDispari() {
+        for (int i = 0; i < 20; i++) {
+            if ((i % 2) != 0) {
+                System.out.println(discorso[i]);
+            }
+        }
+    }
+
+    public void dialogo() throws InterruptedException {
+        //discorso a (num. pari)
         discorso[0] = "Ciao io sono thread1";
         discorso[2] = "come stai?";
         discorso[4] = "bene, mi fa molta paura la storia del virus";
@@ -64,9 +64,8 @@ public class thread implements Runnable {
         discorso[16] = "che noia, sono davvero brutte";
         discorso[18] = "si io preferivo andare a scuola, è di gran lunga più educativo";
         discorso[20] = "va beh sei il solito, ora vado che mi chiamano, ciao thread2";
-    }
-    
-    public void dialogo2() throws InterruptedException {
+
+        //discorso b (num. dispari)
         discorso[1] = "Ciao io invece sono thread2";
         discorso[3] = "molto bene grazie, tu?";
         discorso[5] = "a me no, secondo me è tutto un esagerazione";
@@ -82,13 +81,18 @@ public class thread implements Runnable {
 
     @Override
     public void run() {
-        if ((getContatore()%2) == 0) {  //se pari
-                stampaPari();
-            } else if ((getContatore()%2) == 0){
-                stampaDispari();
+        if (getNome() == 'a') {  //se pari
+            if ((getContatore() % 2) == 0) {
+                System.out.println("A: " + discorso[contatore]);
+            } else {
+                System.out.print("");
             }
-    }
-    private void thread1() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        } else if (getNome() == 'b') {
+            if ((getContatore() % 2) != 0) {
+                System.out.println("B: " + discorso[contatore]);
+            } else {
+                System.out.print("");
+            }
+        }
     }
 }

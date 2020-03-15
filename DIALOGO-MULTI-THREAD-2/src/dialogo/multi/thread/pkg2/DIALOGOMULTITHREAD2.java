@@ -16,9 +16,19 @@ public class DIALOGOMULTITHREAD2 {
      */
     public static void main(String[] args) throws InterruptedException {
         int contatore = 0;
+
+        Thread T1; 
+        Thread T2;
         
-        Thread T1 = new Thread(new thread('a', contatore));
-        Thread T2 = new Thread(new thread('b', contatore));
+        for (int i = 0; i < 22; i++) {  //i dialoghi sono 22
+            
+            Thread.sleep(1000);
+            T1 = new Thread(new thread('a', contatore));
+            Thread.sleep(1000);
+            T2 = new Thread(new thread('b', contatore));
+            
+            contatore++;
+        }
     }
-    
+
 }
