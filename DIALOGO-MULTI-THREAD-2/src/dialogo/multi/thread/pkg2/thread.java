@@ -81,18 +81,27 @@ public class thread implements Runnable {
 
     @Override
     public void run() {
-        if (getNome() == 'a') {  //se pari
-            if ((getContatore() % 2) == 0) {
-                System.out.println("A: " + discorso[contatore]);
-            } else {
-                System.out.print("");
+        try {
+            for (int i = 0; i < 22; i++) {
+                Thread.sleep(1000);
+                if (getNome() == 'a') {  //se pari
+                    if ((getContatore() % 2) == 0) {
+                        System.out.println("A: " + discorso[contatore]);
+                    } else {
+                        System.out.print("");
+                    }
+                } else if (getNome() == 'b') {
+                    if ((getContatore() % 2) != 0) {
+                        System.out.println("B: " + discorso[contatore]);
+                    } else {
+                        System.out.print("");
+                    }
+                }
+                contatore++;
             }
-        } else if (getNome() == 'b') {
-            if ((getContatore() % 2) != 0) {
-                System.out.println("B: " + discorso[contatore]);
-            } else {
-                System.out.print("");
-            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(thread.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 }
